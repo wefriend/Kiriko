@@ -8,7 +8,7 @@ script_version = "3.3"
 
 function get_fxs()
 	local lines={}
-	funs=io.open("funs.lua","a+")
+	funs=io.open(aegisub.decode_path("?data").."/funs.lua","a+")
 	for line in funs:lines() do
 		lines[#lines+1]=line
 	end
@@ -27,7 +27,7 @@ return fxs_tbl
 end
 
 function file_rewrite()
-	funs=io.open("funs.lua","w+")
+	funs=io.open(aegisub.decode_path("?data").."/funs.lua","w+")
 	for i,fun in ipairs(fxs) do
 		funs:write("function_name\n"..fun.name.."\n")
 		funs:write("function_start\n"..fun.fx.."\n".."function_end\n")
